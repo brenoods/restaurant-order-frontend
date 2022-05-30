@@ -1,0 +1,26 @@
+<form [formGroup]="orderForm" (ngSubmit)="sendOrder(orderForm)">
+    <br>
+    <div class="mb-3" class="form-center">
+        <label for="orderInput" class="form-label">Input: </label>
+        <input type="text" class="form-control" id="orderInput" formControlName="orderInput">
+        <div style="color: red;"
+            *ngIf="orderForm.get('orderInput')?.invalid && (orderForm.get('orderInput')?.dirty || orderForm.get('orderInput')?.touched)">
+            Required Field.
+        </div>
+    </div>
+    <br>
+    <div class="mb-3"  class="form-center">
+        <label for="orderOutput" class="form-label">Output:</label>
+        <input type="text" class="form-control" id="orderOutput" readonly value="{{lastOutput}}">
+    </div>
+    <br>
+    <div class="mb-3"  class="form-center">
+        <button class="btn btn-primary" type="submit">Send Order</button>
+    </div>
+    <br>
+</form>
+
+
+<ag-grid-angular style="width: 50%; height: 25%" class="ag-theme-alpine form-center" [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef" [rowData]="rowData" [rowSelection]="'multiple'" [animateRows]="true">
+</ag-grid-angular>
